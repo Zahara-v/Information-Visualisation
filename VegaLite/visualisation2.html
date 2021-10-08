@@ -1,0 +1,117 @@
+<html>
+   <head>
+      <title> Zahara Vazir - Information Visualisation</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Zahara Vazir</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">18417696</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;"> 
+               https://raw.githubusercontent.com/Zahara-v/sales1/main/vgsales.csv
+               This dataset contains information on a list of popular video games that have had sales greater than a 100,000 copies. It
+               gives data on the genre of the video game, its publisher and the sales of the video game in North America, Europe, Japan and the rest of the world.
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;">Which publisher has the highest overall global sales?</td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;">This bar chart represents the top 23 publishers who have a global sale of more than 5 million. It evidently shows the publishers with the highest over global sale. The bars in the bar chart are sorted in descending order. </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;">Form the bar chart it is obvious that Nintendo has the highest overall global sale compared to all the other publishers. I'm not surprised by this insight, as Nintendo products are very popular and they produce a lot of new games every year.The second highest publisher is Activision. Their overall sales are not close to Nintendo's and is a little over 200 million. This is a large decrease from Nintendo.I didn't expect such a great decline. This goes to show that people around the world buy more products from Nintendo compared to the other publishers.After this, the third highest global sale for the publisher Take-Two interactive, drops by a little and is nearly 160 million. I'm also astonished to see how around half of the publishers that are represeted on the bar chart have just made around 1 million overall in global sales over the years. I didn't expect to see so many publishers with sales of that little. This could be due to them not releasing many games over the years or maybe the games they create aren't popular among people and so people don't tend to buy them.</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;">I chose to do a bar chart as I thought this would be the easiest way to represent the data in order for it to look clear and concise. I wanted to make sure that it is obvious by looking at the graph which publisher has the highest overall global sales from over the years. I chose to do it hoizontally as since there is a lot of data and some of the bars are quite long, it is the best way to display the information. Also since I have included the names of the publishers beside their bars, the writing is also horizonal so it is is more convenient when reading the names. I have also chosen to use one colour for all of the publishers, as this makes the bar chart look less clustered and chaotic. I have sorted the bar charts to go in descending order. This makes it unchallenging when trying to find the publisher which has the highest overall global sales. 
+               
+               I considered doing a stacked bar chart by using the sales for North America, Europe, Japan and other places in the world in order to display the sales for each publisher in the different region. This was not a good idea, as the stacked bar chart looked quite complex and puzzling when looking at the graph. It was also too hard to compare the overall sales for a publisher in the different regions. </td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;">I have filtered the data to only display publishers which have a global sale of more than 5 million. This is to reduce clutter on the bar chart. Also since the question I'm gaining insights about is to show which publisher has the overall highest global sales over the years, it is not necessary to add the publishers which have had overall sales of less than 5 million.  </td>
+            </tr>
+         </tbody>
+      </table>
+      <script type="text/javascript">
+        var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+           "data": {
+              "url": "https://raw.githubusercontent.com/Zahara-v/sales1/main/vgsales.csv",
+              "format": {
+                 "type": "csv"
+              }
+           },
+           "width": "500",
+           "height": "500",
+           "transform": [
+              {
+                 "filter": "datum.Global_Sales > 5"
+              }
+           ],
+           "mark": "bar",
+           "encoding": {
+              "y": {
+                 "field": "Publisher",
+                 "type": "nominal",
+                 "axis": {
+                    "title": "Publisher",
+                    "titleFontSize": 15,
+                    "titlePadding": 10
+                 },
+                 "sort": "-x"
+
+
+              },
+              "x": {
+                 "field": "Global_Sales",
+                 "type": "quantitative",
+                 "aggregate": "sum",
+                 "axis": {
+                    "title": "Global Sales(in millions)",
+                    "labelFontSize": 12,
+                    "titleFontSize": 15,
+                    "titlePadding": 10
+                 }
+              },
+              "tooltip": {
+                 "field": "Publisher",
+                 "type": "nominal"
+              }
+           },
+           "title": {
+              "text": "Overall Global Sales for the top 23  Publishers",
+              "anchor": "middle"
+           }
+}
+            vegaEmbed("#vis", yourVlSpec);
+      </script>
+   </body>
+</html>

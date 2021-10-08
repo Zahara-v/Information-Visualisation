@@ -1,0 +1,188 @@
+<html>
+   <head>
+      <title> Zahara Vazir - Information Visualisation</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Zahara Vazir</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">18417696</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;"> 
+                https://raw.githubusercontent.com/Zahara-v/sales1/main/vgsales.csv
+                This dataset contains information on a list of popular video games that have had sales greater than a 100,000 copies. It
+               gives data on the genre of the video game, its publisher and the sales of the video game in North America, Europe, Japan and the rest of the world.
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;"> During which year was the sales for videogames at its highest and in which region was this in?</td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;">This line graph represents the total sales of videogames during the years 1980-2020 for the regions North America, Europe, Japan and the rest of the world. There are 4 line graphs on the graph. Blue is North America, orange is Europe, purple is Japan and the rest of the world is represented by the colour green. </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;">From the line graph, the insights I have gathered is that during the year 2008, North America had the highest sales ever recorded. The sales in North America during this period had reached around 350 million. We can see from the graph that from the years 1980 to 2020, the sales in North America are relatively quite high as compared to the other regions. Even during 1980, North America had the highest sales out of all the regions. The sale was around 30 million. This indicates that videogames must have always been a very popular pastime for a lot of people in North America. After North America reached its peak in 2008, it slowly began to decline in the sales made during the years. 
+               
+               We can see for Europe, in the early years, the sales for videogames were very low, around 1 million, but during the year 1995, the sales of videogames in Europe started to increase greatly. From the graph it is evident that in the year 2009, the sales for video games in Europe were at its highest. It was at a sale of about 190 million. After this year, the sales started to decrease as well. 
+               
+               In Japan, there were barely any sales when videogames first came out, but by 1982, the sales began to incline steadily and by 2006, The trading of videogames had reached its peak and slowly reduced after that. 
+
+               For the rest of the world, the sales in the different countires started off slow, but picked up around 1995 and kept increaing after that. From the graph it is evident that by 2008, the sales in the different countries were at its pinnacle in the year 2008 and slowly after that it began to decrease like every other region. 
+
+               From the graph, it is obvious that the gaming industry experienced a boom from 1998 until 2009. This was when the sales in all regions were increasing dramatically and had reached its highest point. This was probably due to videogames getting more attraction and popularity as they were something new and different in the market. But shortly after its peak, there was a decrease in all regions. This could have been due to new technologies coming in and they had more of a demand compared to videogames. 
+            </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;">I considered using a line graph, as I think it is the most effective way of showing the trend in the sales of videogames throughout the year. Using a line graph makes it obvious where the sales of videogames were at its highest and lowest and also makes it clear of what year this could have been in. I plotted 4 line graphs on the same graph as this enables us to clearly make comparisons of the sales of games in the different regions. We can compare which region had the highest sales in a certain year. I chose distinct colours for each region so that there would be no confusion between the different regions and it would be visible which region is which.
+               
+               I considered implementing a scatterplot to see if there was a correlation in the sales of all of the different regions, but I thought using a line graph would be clearer instead. Using a line graph allows us to place the year on the x-axis. This helps us indicate whihc years had higher sales for videogames.  
+                 </td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;">I didnt use a filter for this visualisation, as I didnt think it was necessary. I wanted to use all of the records from the file.</td>
+            </tr>
+         </tbody>
+      </table>
+      <script type="text/javascript">
+        var yourVlSpec =  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+            "data": {
+                "url": "https://raw.githubusercontent.com/Zahara-v/sales1/main/vgsales.csv",
+                "format": { "type": "csv" }
+            },
+            "title": {
+                "text": "Sales for each Region from the Years 1980 until 2020",
+                "anchor": "middle",
+                "fontSize": 15
+            },
+            "width": 500,
+            "height": 500,
+            "layer": [
+                {
+                    "mark": { "type": "line" },
+                    "encoding": {
+                        "y": {
+                            "field": "NA_Sales",
+                            "type": "quantitative",
+                            "aggregate": "sum",
+                            "axis": {
+                                "title": "Sales for each Region(in millions)",
+                                "labelFontSize": 8,
+                                "titleFontSize": 15,
+                                "titlePadding": 10
+
+                            }
+                        },
+                        "x": {
+                            "timeUnit": "year",
+                            "field": "Year",
+                            "axis": {
+                                "title": "Year",
+                                "labelFontSize": 12,
+                                "titleFontSize": 15,
+                                "titlePadding": 10
+                            }
+
+
+                        }
+                    }
+                },
+
+                {
+                    "mark": { "type": "line" },
+                    "encoding": {
+                        "y": {
+                            "field": "EU_Sales",
+                            "type": "quantitative",
+                            "aggregate": "sum"
+
+                        },
+                        "x": {
+                            "timeUnit": "year",
+                            "field": "Year"
+
+                        },
+                        "color": { "value": "orange" }
+                    }
+                },
+                {
+                    "mark": { "type": "line" },
+                    "encoding": {
+                        "y": {
+                            "field": "JP_Sales",
+                            "type": "quantitative",
+                            "aggregate": "sum"
+
+                        },
+                        "x": {
+                            "timeUnit": "year",
+                            "field": "Year"
+
+                        },
+                        "color": { "value": "purple" }
+                    }
+                },
+
+                {
+                    "mark": { "type": "line" },
+                    "encoding": {
+                        "y": {
+                            "field": "Other_Sales",
+                            "type": "quantitative",
+                            "aggregate": "sum"
+
+                        },
+                        "x": {
+                            "timeUnit": "year",
+                            "field": "Year"
+
+                        },
+                        "color": { "value": "green" }
+                    }
+                }
+            ],
+
+            "tooltip": { "field": "NA_Sales", "type": "quantitative" },
+            "opacity": { "value": 0.3 },
+
+            "config": {
+                "legend": {
+                    "orient": "bottom-right",
+                    "titleFontSize": 20,
+                    "labelFontSize": 20
+                }
+            }
+
+
+}
+            vegaEmbed("#vis", yourVlSpec);
+      </script>
+   </body>
+</html>
